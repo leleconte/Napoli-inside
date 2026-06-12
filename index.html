@@ -189,6 +189,30 @@
             cursor: pointer;
             box-shadow: 0 0 8px var(--napoli-main);
         }
+        
+        /* STILE TENDINA SELEZIONE LINGUA */
+        .setting-select {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 10px;
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .setting-select:focus {
+            border-color: var(--napoli-main);
+            background: rgba(16, 42, 69, 0.4);
+        }
+        .setting-select option {
+            background: var(--bg-dark);
+            color: var(--text-main);
+        }
+
         .setting-switch-wrapper {
             display: flex;
             justify-content: space-between;
@@ -515,6 +539,8 @@
     <div id="bg" class="main-background"></div>
     <div id="grain" class="grain-overlay"></div>
 
+    <audio id="bg-music" src="brumotti.mp3" loop muted></audio>
+
     <nav>
         <div class="nav-left-wrapper">
             <img src="logo.png" alt="NAPOLI INSIDE Logo" class="nav-logo">
@@ -541,12 +567,20 @@
         
         <div class="setting-item">
             <label>Luminosità Sfondo</label>
-            <input type="range" class="setting-control-range" min="20" max="100" value="100" oninput="document.getElementById('bg').style.opacity = this.value/100;">
+            <input type="range" class="setting-control-range" min="5" max="100" value="100" oninput="document.getElementById('bg').style.opacity = this.value/100;">
         </div>
 
         <div class="setting-item">
-            <label>Volume Audio Effetti</label>
-            <input type="range" class="setting-control-range" min="0" max="100" value="50">
+            <label>Volume Musica</label>
+            <input type="range" class="setting-control-range" min="0" max="100" value="40" oninput="document.getElementById('bg-music').volume = this.value/100;">
+        </div>
+
+        <div class="setting-item">
+            <label>Lingua / Language</label>
+            <select class="setting-select" onchange="alert('Lingua impostata: ' + this.value)">
+                <option value="it">Italiano (IT)</option>
+                <option value="en">English (EN)</option>
+            </select>
         </div>
 
         <div class="setting-item setting-switch-wrapper">
@@ -728,6 +762,16 @@
             </footer>
         </div>
     </section>
+
+    <script>
+        document.addEventListener('click', function() {
+            const music = document.getElementById('bg-music');
+            if(music.muted) {
+                music.muted = false;
+                music.play().catch(err => console.log("Riproduzione bloccata dal browser: ", err));
+            }
+        }, { once: true });
+    </script>
 
 </body>
 </html>
