@@ -6,10 +6,10 @@
     <title> AURELIS | ROLEPLAY </title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;600;800&display=swap" rel="stylesheet">
     <style>
-        /* --- VARIABILI BASATE SUL NUOVO LOGO --- */
+        /* --- VARIABILI BASATE SUL NUOVO LOGO (COLORI NAPOLETANI) --- */
         :root {
-            --red-main: #b81d1d;    /* Rosso del logo */
-            --red-dark: #4a0a0a;    /* Rosso scuro per profondità */
+            --napoli-main: #0091ff;    /* Azzurro Napoli Brillante */
+            --napoli-dark: #001f42;    /* Blu Notte Profondo per profondità */
             --bianco: #F4F5F0;
             --black-pure: #050505;  /* Nero profondo */
             --discord: #5865F2;
@@ -32,7 +32,7 @@
             top: 0; left: 0;
             width: 100%; height: 100%;
             z-index: -1;
-            background: radial-gradient(circle at center, var(--red-dark) 0%, var(--black-pure) 85%);
+            background: radial-gradient(circle at center, var(--napoli-dark) 0%, var(--black-pure) 85%);
         }
 
         .grain-overlay {
@@ -55,10 +55,10 @@
             background: rgba(0,0,0,0.9);
             backdrop-filter: blur(15px);
             z-index: 1000;
-            border-bottom: 2px solid var(--red-main);
+            border-bottom: 2px solid var(--napoli-main);
         }
 
-        .nav-logo { height: 55px; transition: 0.3s; filter: drop-shadow(0 0 8px var(--red-main)); }
+        .nav-logo { height: 55px; transition: 0.3s; filter: drop-shadow(0 0 8px var(--napoli-main)); }
         .nav-logo:hover { transform: scale(1.1) rotate(-3deg); }
 
         .nav-links a {
@@ -72,7 +72,7 @@
             font-size: 0.9rem;
         }
 
-        .nav-links a:hover { color: var(--red-main); }
+        .nav-links a:hover { color: var(--napoli-main); }
 
         /* --- LOGICA PAGINE --- */
         .page-section {
@@ -101,7 +101,7 @@
             max-width: 500px;
             margin-bottom: 20px;
             animation: heroFloat 5s ease-in-out infinite;
-            filter: drop-shadow(0 0 30px rgba(184, 29, 29, 0.5));
+            filter: drop-shadow(0 0 30px rgba(0, 145, 255, 0.5));
         }
 
         @keyframes heroFloat {
@@ -112,7 +112,7 @@
         .brand-line {
             height: 3px;
             width: 0;
-            background: linear-gradient(to right, transparent, var(--red-main), transparent);
+            background: linear-gradient(to right, transparent, var(--napoli-main), transparent);
             margin-bottom: 40px;
             animation: growLine 2s forwards 0.5s;
         }
@@ -123,7 +123,7 @@
 
         /* --- BOTTONE DISCORD --- */
         .btn-discord-special {
-            background: linear-gradient(135deg, var(--red-main), var(--red-dark));
+            background: linear-gradient(135deg, var(--napoli-main), var(--napoli-dark));
             color: white;
             text-decoration: none;
             padding: 20px 50px;
@@ -135,7 +135,7 @@
             gap: 15px;
             position: relative;
             transition: 0.4s;
-            box-shadow: 0 10px 30px rgba(184, 29, 29, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 145, 255, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.1);
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -143,14 +143,14 @@
 
         .btn-discord-special:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 50px rgba(184, 29, 29, 0.7);
+            box-shadow: 0 0 50px rgba(0, 145, 255, 0.7);
             filter: brightness(1.2);
         }
 
         /* --- SEZIONI --- */
         .section-regolamento {
             background: rgba(8, 8, 8, 0.95);
-            border-top: 4px solid var(--red-main);
+            border-top: 4px solid var(--napoli-main);
             z-index: 5;
         }
 
@@ -160,12 +160,12 @@
             padding: 40px;
             background: rgba(255,255,255,0.05);
             border-radius: 10px;
-            border: 1px solid var(--red-dark);
+            border: 1px solid var(--napoli-dark);
         }
 
         .section-shop {
             background: var(--black-pure);
-            border-top: 4px solid var(--red-dark);
+            border-top: 4px solid var(--napoli-dark);
             z-index: 5;
             padding-bottom: 50px;
         }
@@ -175,7 +175,7 @@
             font-size: 3.5rem;
             color: var(--bianco);
             margin-bottom: 20px;
-            text-shadow: 0 0 15px var(--red-main);
+            text-shadow: 0 0 15px var(--napoli-main);
             letter-spacing: 5px;
             text-align: center;
         }
@@ -203,7 +203,7 @@
             flex: 0 0 320px;
             scroll-snap-align: center;
             background: var(--card-bg);
-            border: 1px solid rgba(184, 29, 29, 0.2);
+            border: 1px solid rgba(0, 145, 255, 0.2);
             border-radius: 15px;
             padding: 35px 25px;
             text-align: center;
@@ -214,12 +214,12 @@
         }
 
         .shop-card:hover {
-            border-color: var(--red-main);
+            border-color: var(--napoli-main);
             transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(184, 29, 29, 0.4);
+            box-shadow: 0 15px 40px rgba(0, 145, 255, 0.4);
         }
 
-        .card-category { color: var(--red-main); font-weight: 800; letter-spacing: 2px; font-size: 0.7rem; margin-bottom: 10px; text-transform: uppercase; }
+        .card-category { color: var(--napoli-main); font-weight: 800; letter-spacing: 2px; font-size: 0.7rem; margin-bottom: 10px; text-transform: uppercase; }
         .card-name { font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; color: white; }
         .card-price { font-size: 2.2rem; font-weight: 900; color: white; margin-bottom: 20px; }
         
@@ -239,11 +239,11 @@
 
         .card-features li::before {
             content: '⬥';
-            position: absolute; left: 0; color: var(--red-main);
+            position: absolute; left: 0; color: var(--napoli-main);
         }
 
         .btn-buy {
-            background: var(--red-main);
+            background: var(--napoli-main);
             color: white;
             text-decoration: none;
             padding: 14px;
@@ -265,7 +265,7 @@
             transform: translateX(-50%);
             animation: bounce 2s infinite;
             z-index: 5;
-            color: var(--red-main);
+            color: var(--napoli-main);
             font-size: 2rem;
             text-decoration: none;
         }
@@ -304,7 +304,7 @@
         <a href="#regolamento" class="scroll-down">▼</a>
     </section>
 
-<section id="regolamento" class="page-section section-regolamento">
+    <section id="regolamento" class="page-section section-regolamento">
         <h2 class="section-title">Regolamento</h2>
         
         <div class="placeholder-box" style="margin-top: 40px;">
@@ -313,13 +313,13 @@
             <a href="https://docs.google.com/document/d/1fK0cdInZ_XhTvf37mXiZL_z91Q0AwgVSNS4jMbhK3AM/edit?usp=sharing" 
                target="_blank" 
                class="btn-buy" 
-               style="display: inline-block; padding: 15px 40px; background: transparent; border: 2px solid var(--red-main); color: var(--red-main); text-decoration: none; font-weight: 800;">
-               LEGGI IL REGOLAMENTO
+               style="display: inline-block; padding: 15px 40px; background: transparent; border: 2px solid var(--napoli-main); color: var(--napoli-main); text-decoration: none; font-weight: 800;">
+                LEGGI IL REGOLAMENTO
             </a>
         </div>
     </section>
 
-<section id="shop" class="page-section section-shop">
+    <section id="shop" class="page-section section-shop">
         <h2 class="section-title">Fazioni</h2>
         <p class="scroll-hint">Trascina lateralmente ⟷</p>
         <div class="shop-wrapper">
@@ -339,7 +339,7 @@
                     </div>
                     <a href="https://discord.com/channels/1439264900084924438/1439264900084924438" class="btn-buy">Acquista</a>
                 </div>
-                <div class="shop-card" style="border-color: var(--red-main);">
+                <div class="shop-card" style="border-color: var(--napoli-main);">
                     <div>
                         <div class="card-category">Tier 2</div>
                         <div class="card-name">FAZIONE ARGENTO</div>
