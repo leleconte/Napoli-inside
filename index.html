@@ -37,6 +37,7 @@
             width: 100%; height: 100%;
             z-index: -2;
             background: linear-gradient(135deg, #06090f 0%, #0c1524 50%, #04070d 100%);
+            transition: opacity 0.3s ease;
         }
 
         .grain-overlay {
@@ -47,6 +48,7 @@
             background-size: 30px 30px;
             pointer-events: none;
             opacity: 0.4;
+            transition: opacity 0.3s ease;
         }
 
         /* --- NAVBAR ULTRA-MODERNA GLASSMORPHISM SCURA --- */
@@ -65,13 +67,26 @@
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
         }
 
+        .nav-left-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
         .nav-logo { height: 50px; transition: 0.3s; filter: drop-shadow(0 2px 8px rgba(0, 145, 255, 0.4)); }
         .nav-logo:hover { transform: scale(1.05) rotate(-2deg); }
+
+        /* DIVISORE VERTICALE PROFESSIONALE */
+        .nav-divider {
+            width: 1px;
+            height: 30px;
+            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.15), transparent);
+            margin: 0 25px;
+        }
 
         .nav-links a {
             color: var(--text-main);
             text-decoration: none;
-            margin-left: 30px;
+            margin-right: 30px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
@@ -88,6 +103,114 @@
 
         .nav-links a:hover { color: var(--napoli-main); }
         .nav-links a:hover::after { width: 100%; }
+
+        /* BOTTONE INGRANAGGIO IMPOSTAZIONI */
+        .btn-settings-toggle {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s ease;
+        }
+        .btn-settings-toggle:hover {
+            color: var(--napoli-main);
+            transform: rotate(45deg);
+        }
+
+        /* PANNELLO DI CONTROLLO IMPOSTAZIONI SITO */
+        .settings-panel {
+            position: fixed;
+            top: 0; right: -350px;
+            width: 350px; height: 100vh;
+            background: rgba(10, 16, 26, 0.95);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-left: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            padding: 40px 30px;
+            transition: cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
+        }
+        .settings-panel:target {
+            right: 0;
+        }
+        .settings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 15px;
+        }
+        .settings-header h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            color: var(--text-main);
+        }
+        .btn-settings-close {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 300;
+            transition: 0.2s;
+        }
+        .btn-settings-close:hover {
+            color: var(--napoli-main);
+        }
+        .setting-item {
+            margin-bottom: 30px;
+        }
+        .setting-item label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+        .setting-control-range {
+            width: 100%;
+            -webkit-appearance: none;
+            background: rgba(255, 255, 255, 0.08);
+            height: 6px;
+            border-radius: 3px;
+            outline: none;
+        }
+        .setting-control-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px; height: 16px;
+            border-radius: 50%;
+            background: var(--napoli-main);
+            cursor: pointer;
+            box-shadow: 0 0 8px var(--napoli-main);
+        }
+        .setting-switch-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .setting-switch {
+            position: relative;
+            display: inline-block;
+            width: 46px; height: 24px;
+        }
+        .setting-switch input { opacity: 0; width: 0; height: 0; }
+        .setting-slider {
+            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: .4s; border-radius: 24px;
+        }
+        .setting-slider:before {
+            position: absolute; content: ""; height: 16px; width: 16px; left: 4px; bottom: 4px;
+            background-color: white; transition: .4s; border-radius: 50%;
+        }
+        input:checked + .setting-slider { background-color: var(--napoli-main); }
+        input:checked + .setting-slider:before { transform: translateX(22px); }
 
         /* --- STRUTTURA DELLE SEZIONI --- */
         .page-section {
@@ -389,17 +512,51 @@
 </head>
 <body>
 
-    <div class="main-background"></div>
-    <div class="grain-overlay"></div>
+    <div id="bg" class="main-background"></div>
+    <div id="grain" class="grain-overlay"></div>
 
     <nav>
-        <img src="logo.png" alt="NAPOLI INSIDE Logo" class="nav-logo">
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#regolamento">Regolamento</a>
-            <a href="#shop-system">Sostieni</a>
+        <div class="nav-left-wrapper">
+            <img src="logo.png" alt="NAPOLI INSIDE Logo" class="nav-logo">
+            <div class="nav-divider"></div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#regolamento">Regolamento</a>
+                <a href="#shop-system">Sostieni</a>
+            </div>
         </div>
+        
+        <a href="#settings" class="btn-settings-toggle">
+            <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/>
+            </svg>
+        </a>
     </nav>
+
+    <div id="settings" class="settings-panel">
+        <div class="settings-header">
+            <h3>Impostazioni</h3>
+            <a href="#close" class="btn-settings-close">&times;</a>
+        </div>
+        
+        <div class="setting-item">
+            <label>Luminosità Sfondo</label>
+            <input type="range" class="setting-control-range" min="20" max="100" value="100" oninput="document.getElementById('bg').style.opacity = this.value/100;">
+        </div>
+
+        <div class="setting-item">
+            <label>Volume Audio Effetti</label>
+            <input type="range" class="setting-control-range" min="0" max="100" value="50">
+        </div>
+
+        <div class="setting-item setting-switch-wrapper">
+            <label>Effetto Grana Pellicola</label>
+            <div class="setting-switch">
+                <input type="checkbox" id="grain-toggle" checked onchange="document.getElementById('grain').style.display = this.checked ? 'block' : 'none';">
+                <span class="setting-slider"></span>
+            </div>
+        </div>
+    </div>
 
     <section id="home" class="page-section hero">
         <div class="hero-content">
@@ -437,7 +594,6 @@
                 <p>Scegli una categoria qui sotto per esplorare i pacchetti disponibili ed attivabili all'interno del server.</p>
             </div>
 
-            <!-- IL MENU DELLE SCHEDE ORA SI TROVA IN ALTO SOPRA I CONTENUTI -->
             <div class="tabs-menu">
                 <a href="#fazioni-tab" class="tab-btn">Fazioni</a>
                 <a href="#business-tab" class="tab-btn">Business</a>
