@@ -40,17 +40,6 @@
             transition: opacity 0.3s ease;
         }
 
-        .grain-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            background-image: radial-gradient(rgba(0, 145, 255, 0.15) 1.5px, transparent 1.5px);
-            background-size: 30px 30px;
-            pointer-events: none;
-            opacity: 0.4;
-            transition: opacity 0.3s ease;
-        }
-
         /* --- NAVBAR ULTRA-MODERNA GLASSMORPHISM SCURA --- */
         nav {
             position: fixed;
@@ -537,18 +526,17 @@
 <body>
 
     <div id="bg" class="main-background"></div>
-    <div id="grain" class="grain-overlay"></div>
 
-    <audio id="bg-music" src="brumotti.mp3" loop muted></audio>
+    <audio id="bg-music" src="brumotti.mp3" loop></audio>
 
     <nav>
         <div class="nav-left-wrapper">
             <img src="logo.png" alt="NAPOLI INSIDE Logo" class="nav-logo">
             <div class="nav-divider"></div>
             <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#regolamento">Regolamento</a>
-                <a href="#shop-system">Sostieni</a>
+                <a href="#home" data-translate="nav_home">Home</a>
+                <a href="#regolamento" data-translate="nav_rules">Regolamento</a>
+                <a href="#shop-system" data-translate="nav_shop">Sostieni</a>
             </div>
         </div>
         
@@ -561,34 +549,27 @@
 
     <div id="settings" class="settings-panel">
         <div class="settings-header">
-            <h3>Impostazioni</h3>
+            <h3 data-translate="settings_title">Impostazioni</h3>
             <a href="#close" class="btn-settings-close">&times;</a>
         </div>
         
         <div class="setting-item">
-            <label>Luminosità Sfondo</label>
+            <label data-translate="bg_brightness">Luminosità Sfondo</label>
             <input type="range" class="setting-control-range" min="5" max="100" value="100" oninput="document.getElementById('bg').style.opacity = this.value/100;">
         </div>
 
         <div class="setting-item">
-            <label>Volume Musica</label>
+            <label data-translate="music_volume">Volume Musica</label>
             <input type="range" class="setting-control-range" min="0" max="100" value="40" oninput="document.getElementById('bg-music').volume = this.value/100;">
         </div>
 
         <div class="setting-item">
-            <label>Lingua / Language</label>
-            <select class="setting-select" onchange="alert('Lingua impostata: ' + this.value)">
+            <label data-translate="lang_select_label">Lingua / Language</label>
+            <select class="setting-select" onchange="changeLanguage(this.value)">
                 <option value="it">Italiano (IT)</option>
                 <option value="en">English (EN)</option>
+                <option value="es">Español (ES)</option>
             </select>
-        </div>
-
-        <div class="setting-item setting-switch-wrapper">
-            <label>Effetto Grana Pellicola</label>
-            <div class="setting-switch">
-                <input type="checkbox" id="grain-toggle" checked onchange="document.getElementById('grain').style.display = this.checked ? 'block' : 'none';">
-                <span class="setting-slider"></span>
-            </div>
         </div>
     </div>
 
@@ -597,7 +578,7 @@
             <img src="napoliinside.gif" alt="NAPOLI INSIDE RP" class="main-banner">
             <div class="brand-line"></div>
             
-            <a href="https://discord.gg/napoliinside" target="_blank" class="btn-discord-special">
+            <a href="https://discord.gg/napoliinside" target="_blank" class="btn-discord-special" data-translate="join_discord">
                 <svg width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037 19.736 19.736 0 0 0-4.885 1.515.069.069 0 0 0-.032.027C.533 9.048-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.078.078 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
                 UNISCITI A NAPOLI INSIDE
             </a>
@@ -606,13 +587,13 @@
 
     <section id="regolamento" class="page-section">
         <div class="dashboard-container">
-            <h2 class="section-title">Regolamento</h2>
+            <h2 class="section-title" data-translate="rules_title">Regolamento</h2>
             <div class="brand-line"></div>
             <div class="placeholder-box">
-                <p>Consulta il regolamento ufficiale di Napoli Inside per conoscere i dettagli, le leggi e le normative che governano la nostra città.</p>
+                <p data-translate="rules_desc">Consulta il regolamento ufficiale di Napoli Inside per conoscere i dettagli, le leggi e le normative che governano la nostra città.</p>
                 <a href="https://docs.google.com/document/d/1eC3YLiD9Wru-cVOhciKoJDvW70ca5rTf4hzm7Fydmy4/edit?usp=sharing" 
                    target="_blank" 
-                   class="btn-regolamento">
+                   class="btn-regolamento" data-translate="read_rules">
                      LEGGI IL REGOLAMENTO
                 </a>
             </div>
@@ -621,18 +602,18 @@
 
     <section id="shop-system" class="page-section">
         <div class="dashboard-container">
-            <h2 class="section-title">Shop Sostieni</h2>
+            <h2 class="section-title" data-translate="shop_title">Shop Sostieni</h2>
             <div class="brand-line"></div>
             
             <div class="placeholder-box">
-                <p>Scegli una categoria qui sotto per esplorare i pacchetti disponibili ed attivabili all'interno del server.</p>
+                <p data-translate="shop_desc">Scegli una categoria qui sotto per esplorare i pacchetti disponibili ed attivabili all'interno del server.</p>
             </div>
 
             <div class="tabs-menu">
-                <a href="#fazioni-tab" class="tab-btn">Fazioni</a>
-                <a href="#business-tab" class="tab-btn">Business</a>
-                <a href="#residenze-tab" class="tab-btn">Residenze</a>
-                <a href="#veicoli-tab" class="tab-btn">Veicoli</a>
+                <a href="#fazioni-tab" class="tab-btn" data-translate="tab_factions">Fazioni</a>
+                <a href="#business-tab" class="tab-btn" data-translate="tab_business">Business</a>
+                <a href="#residenze-tab" class="tab-btn" data-translate="tab_residences">Residenze</a>
+                <a href="#veicoli-tab" class="tab-btn" data-translate="tab_vehicles">Veicoli</a>
             </div>
 
             <div id="fazioni-tab" class="tab-content">
@@ -640,47 +621,47 @@
                     <div class="shop-card">
                         <div>
                             <div class="card-category">Tier 1</div>
-                            <div class="card-name">FAZIONE BRONZO</div>
+                            <div class="card-name" data-translate="card_f_bronze">FAZIONE BRONZO</div>
                             <div class="card-price">30€</div>
                             <ul class="card-features">
-                                <li>Nome Job Fazione</li>
-                                <li>Gradi a scelta</li>
-                                <li>Deposito Privato</li>
-                                <li>Boss Menu</li>
-                                <li>5x Pistole 9mm + 1000 Proiettili</li>
+                                <li data-translate="f_feat_1">Nome Job Fazione</li>
+                                <li data-translate="f_feat_2">Gradi a scelta</li>
+                                <li data-translate="f_feat_3">Deposito Privato</li>
+                                <li data-translate="f_feat_4">Boss Menu</li>
+                                <li data-translate="f_feat_5">5x Pistole 9mm + 1000 Proiettili</li>
                             </ul>
                         </div>
-                        <a href="https://discord.gg/napoliinside" class="btn-buy">Acquista</a>
+                        <a href="https://discord.gg/napoliinside" class="btn-buy" data-translate="btn_buy">Acquista</a>
                     </div>
                     <div class="shop-card" style="border-color: var(--napoli-main);">
                         <div>
                             <div class="card-category">Tier 2</div>
-                            <div class="card-name">FAZIONE ARGENTO</div>
+                            <div class="card-name" data-translate="card_f_silver">FAZIONE ARGENTO</div>
                             <div class="card-price">50€</div>
                             <ul class="card-features">
-                                <li>Villa Modificata</li>
-                                <li>Nome Job & Gradi</li>
-                                <li>Deposito Privato & Boss Menu</li>
-                                <li>15x Pistole 9mm + 3000 Proiettili</li>
-                                <li>Veicolo Fazione</li>
+                                <li data-translate="f_feat_6">Villa Modificata</li>
+                                <li data-translate="f_feat_7">Nome Job & Gradi</li>
+                                <li data-translate="f_feat_8">Deposito Privato & Boss Menu</li>
+                                <li data-translate="f_feat_9">15x Pistole 9mm + 3000 Proiettili</li>
+                                <li data-translate="f_feat_10">Veicolo Fazione</li>
                             </ul>
                         </div>
-                        <a href="https://discord.gg/napoliinside" class="btn-buy">Acquista</a>
+                        <a href="https://discord.gg/napoliinside" class="btn-buy" data-translate="btn_buy">Acquista</a>
                     </div>
                     <div class="shop-card">
                         <div>
                             <div class="card-category">Tier 3</div>
-                            <div class="card-name">FAZIONE ORO</div>
+                            <div class="card-name" data-translate="card_f_gold">FAZIONE ORO</div>
                             <div class="card-price">70€</div>
                             <ul class="card-features">
-                                <li>Villa Luxury</li>
-                                <li>Nome Job & Gradi</li>
-                                <li>30x Pistole 9mm + 7000 Proiettili</li>
-                                <li>2x Veicoli Fazione</li>
-                                <li>Elicottero</li>
+                                <li data-translate="f_feat_11">Villa Luxury</li>
+                                <li data-translate="f_feat_7">Nome Job & Gradi</li>
+                                <li data-translate="f_feat_12">30x Pistole 9mm + 7000 Proiettili</li>
+                                <li data-translate="f_feat_13">2x Veicoli Fazione</li>
+                                <li data-translate="f_feat_14">Elicottero</li>
                             </ul>
                         </div>
-                        <a href="https://discord.gg/napoliinside" class="btn-buy">Acquista</a>
+                        <a href="https://discord.gg/napoliinside" class="btn-buy" data-translate="btn_buy">Acquista</a>
                     </div>
                 </div>
             </div>
@@ -689,23 +670,23 @@
                 <div class="shop-grid">
                     <div class="shop-card" style="max-width: 400px;">
                         <div>
-                            <div class="card-category">Attività</div>
-                            <div class="card-name">LOCALI</div>
+                            <div class="card-category" data-translate="cat_activity">Attività</div>
+                            <div class="card-name" data-translate="card_b_rooms">LOCALI</div>
                             <div class="card-price">20€</div>
                             <ul class="card-features">
-                                <li>Polizia</li>
-                                <li>Aci</li>
-                                <li>GDF</li>
-                                <li>Carabinieri</li>
-                                <li>Auto Roma</li>
-                                <li>Armeria Beretta</li>
-                                <li>Pearls</li>
-                                <li>RomaAntica</li>
-                                <li>Il Pagante</li>
-                                <li>Pizzeria Romana</li>
+                                <li data-translate="b_feat_1">Polizia</li>
+                                <li data-translate="b_feat_2">Aci</li>
+                                <li data-translate="b_feat_3">GDF</li>
+                                <li data-translate="b_feat_4">Carabinieri</li>
+                                <li data-translate="b_feat_5">Auto Roma</li>
+                                <li data-translate="b_feat_6">Armeria Beretta</li>
+                                <li data-translate="b_feat_7">Pearls</li>
+                                <li data-translate="b_feat_8">RomaAntica</li>
+                                <li data-translate="b_feat_9">Il Pagante</li>
+                                <li data-translate="b_feat_10">Pizzeria Romana</li>
                             </ul>
                         </div>
-                        <a href="https://discord.gg/napoliinside" class="btn-buy">Acquista</a>
+                        <a href="https://discord.gg/napoliinside" class="btn-buy" data-translate="btn_buy">Acquista</a>
                     </div>
                 </div>
             </div>
@@ -714,28 +695,28 @@
                 <div class="shop-grid">
                     <div class="shop-card">
                         <div>
-                            <div class="card-category">Residenze</div>
-                            <div class="card-name">VILLA CUSTOM</div>
+                            <div class="card-category" data-translate="tab_residences">Residenze</div>
+                            <div class="card-name" data-translate="card_r_custom">VILLA CUSTOM</div>
                             <div class="card-price">50€</div>
                             <ul class="card-features">
-                                <li>Interni Personalizzati</li>
-                                <li>Sistema Doorlock</li>
+                                <li data-translate="r_feat_1">Interni Personalizzati</li>
+                                <li data-translate="r_feat_2">Sistema Doorlock</li>
                             </ul>
                         </div>
-                        <a href="https://discord.gg/napoliinside" class="btn-buy">Acquista</a>
+                        <a href="https://discord.gg/napoliinside" class="btn-buy" data-translate="btn_buy">Acquista</a>
                     </div>
                     <div class="shop-card">
                         <div>
-                            <div class="card-category">Residenze Luxury</div>
-                            <div class="card-name">VILLA LUXURY PACK</div>
+                            <div class="card-category" data-translate="cat_res_lux">Residenze Luxury</div>
+                            <div class="card-name" data-translate="card_r_luxury">VILLA LUXURY PACK</div>
                             <div class="card-price">70€</div>
                             <ul class="card-features">
-                                <li>Interni & Doorlock</li>
-                                <li>Garage Privato con Blip</li>
-                                <li>Deposito in casa</li>
+                                <li data-translate="r_feat_3">Interni & Doorlock</li>
+                                <li data-translate="r_feat_4">Garage Privato con Blip</li>
+                                <li data-translate="r_feat_5">Deposito in casa</li>
                             </ul>
                         </div>
-                        <a href="https://discord.gg/napoliinside" class="btn-buy">Acquista</a>
+                        <a href="https://discord.gg/napoliinside" class="btn-buy" data-translate="btn_buy">Acquista</a>
                     </div>
                 </div>
             </div>
@@ -744,15 +725,15 @@
                 <div class="shop-grid">
                     <div class="shop-card" style="max-width: 400px;">
                         <div>
-                            <div class="card-category">Negozio Veicoli</div>
-                            <div class="card-name">VEICOLO IMPORTATO</div>
+                            <div class="card-category" data-translate="cat_shop_veh">Negozio Veicoli</div>
+                            <div class="card-name" data-translate="card_v_import">VEICOLO IMPORTATO</div>
                             <div class="card-price">50€</div>
                             <ul class="card-features">
-                                <li>Modello Realistico Custom</li>
-                                <li>Handling Migliorato</li>
+                                <li data-translate="v_feat_1">Modello Realistico Custom</li>
+                                <li data-translate="v_feat_2">Handling Migliorato</li>
                             </ul>
                         </div>
-                        <a href="https://discord.gg/napoliinside" class="btn-buy">Acquista</a>
+                        <a href="https://discord.gg/napoliinside" class="btn-buy" data-translate="btn_buy">Acquista</a>
                     </div>
                 </div>
             </div>
@@ -764,13 +745,224 @@
     </section>
 
     <script>
+        // --- GESTIONE AUDIO / MUSICA ---
         document.addEventListener('click', function() {
             const music = document.getElementById('bg-music');
-            if(music.muted) {
-                music.muted = false;
-                music.play().catch(err => console.log("Riproduzione bloccata dal browser: ", err));
-            }
+            music.volume = 0.4;
+            music.play().catch(err => console.log("Riproduzione bloccata dal browser: ", err));
         }, { once: true });
+
+        // --- SISTEMA DI TRADUZIONE DIZIONARIO ---
+        const translations = {
+            it: {
+                nav_home: "Home",
+                nav_rules: "Regolamento",
+                nav_shop: "Sostieni",
+                settings_title: "Impostazioni",
+                bg_brightness: "Luminosità Sfondo",
+                music_volume: "Volume Musica",
+                lang_select_label: "Lingua / Language",
+                join_discord: "UNISCITI A NAPOLI INSIDE",
+                rules_title: "Regolamento",
+                rules_desc: "Consulta il regolamento ufficiale di Napoli Inside per conoscere i dettagli, le leggi e le normative che governano la nostra città.",
+                read_rules: "LEGGI IL REGOLAMENTO",
+                shop_title: "Shop Sostieni",
+                shop_desc: "Scegli una categoria qui sotto per esplorare i pacchetti disponibili ed attivabili all'interno del server.",
+                tab_factions: "Fazioni",
+                tab_business: "Business",
+                tab_residences: "Residenze",
+                tab_vehicles: "Veicoli",
+                card_f_bronze: "FAZIONE BRONZO",
+                f_feat_1: "Nome Job Fazione",
+                f_feat_2: "Gradi a scelta",
+                f_feat_3: "Deposito Privato",
+                f_feat_4: "Boss Menu",
+                f_feat_5: "5x Pistole 9mm + 1000 Proiettili",
+                card_f_silver: "FAZIONE ARGENTO",
+                f_feat_6: "Villa Modificata",
+                f_feat_7: "Nome Job & Gradi",
+                f_feat_8: "Deposito Privato & Boss Menu",
+                f_feat_9: "15x Pistole 9mm + 3000 Proiettili",
+                f_feat_10: "Veicolo Fazione",
+                card_f_gold: "FAZIONE ORO",
+                f_feat_11: "Villa Luxury",
+                f_feat_12: "30x Pistole 9mm + 7000 Proiettili",
+                f_feat_13: "2x Veicoli Fazione",
+                f_feat_14: "Elicottero",
+                cat_activity: "Attività",
+                card_b_rooms: "LOCALI",
+                b_feat_1: "Polizia",
+                b_feat_2: "Aci",
+                b_feat_3: "GDF",
+                b_feat_4: "Carabinieri",
+                b_feat_5: "Auto Roma",
+                b_feat_6: "Armeria Beretta",
+                b_feat_7: "Pearls",
+                b_feat_8: "RomaAntica",
+                b_feat_9: "Il Pagante",
+                b_feat_10: "Pizzeria Romana",
+                card_r_custom: "VILLA CUSTOM",
+                r_feat_1: "Interni Personalizzati",
+                r_feat_2: "Sistema Doorlock",
+                cat_res_lux: "Residenze Luxury",
+                card_r_luxury: "VILLA LUXURY PACK",
+                r_feat_3: "Interni & Doorlock",
+                r_feat_4: "Garage Privato con Blip",
+                r_feat_5: "Deposito in casa",
+                cat_shop_veh: "Negozio Veicoli",
+                card_v_import: "VEICOLO IMPORTATO",
+                v_feat_1: "Modello Realistico Custom",
+                v_feat_2: "Handling Migliorato",
+                btn_buy: "Acquista"
+            },
+            en: {
+                nav_home: "Home",
+                nav_rules: "Rules",
+                nav_shop: "Support us",
+                settings_title: "Settings",
+                bg_brightness: "Background Brightness",
+                music_volume: "Music Volume",
+                lang_select_label: "Language / Lingua",
+                join_discord: "JOIN NAPOLI INSIDE",
+                rules_title: "Rules",
+                rules_desc: "Check the official Napoli Inside rules to know the details, laws and regulations governing our city.",
+                read_rules: "READ THE RULES",
+                shop_title: "Support Shop",
+                shop_desc: "Choose a category below to explore the packages available and mockable within the server.",
+                tab_factions: "Factions",
+                tab_business: "Business",
+                tab_residences: "Residences",
+                tab_vehicles: "Vehicles",
+                card_f_bronze: "BRONZE FACTION",
+                f_feat_1: "Faction Job Name",
+                f_feat_2: "Custom Grades",
+                f_feat_3: "Private Stash",
+                f_feat_4: "Boss Menu",
+                f_feat_5: "5x 9mm Pistols + 1000 Ammo",
+                card_f_silver: "SILVER FACTION",
+                f_feat_6: "Modified Villa",
+                f_feat_7: "Job Name & Grades",
+                f_feat_8: "Private Stash & Boss Menu",
+                f_feat_9: "15x 9mm Pistols + 3000 Ammo",
+                f_feat_10: "Faction Vehicle",
+                card_f_gold: "GOLD FACTION",
+                f_feat_11: "Luxury Villa",
+                f_feat_12: "30x 9mm Pistols + 7000 Ammo",
+                f_feat_13: "2x Faction Vehicles",
+                f_feat_14: "Helicopter",
+                cat_activity: "Activities",
+                card_b_rooms: "ROOMS",
+                b_feat_1: "Police",
+                b_feat_2: "Aci Mech",
+                b_feat_3: "GDF Finance",
+                b_feat_4: "Carabinieri",
+                b_feat_5: "Auto Roma Dealership",
+                b_feat_6: "Beretta Armory",
+                b_feat_7: "Pearls Club",
+                b_feat_8: "RomaAntica",
+                b_feat_9: "Il Pagante Club",
+                b_feat_10: "Roman Pizzeria",
+                card_r_custom: "CUSTOM VILLA",
+                r_feat_1: "Custom Interiors",
+                r_feat_2: "Doorlock System",
+                cat_res_lux: "Luxury Residences",
+                card_r_luxury: "VILLA LUXURY PACK",
+                r_feat_3: "Interiors & Doorlock",
+                r_feat_4: "Private Garage with Blip",
+                r_feat_5: "House Storage Safe",
+                cat_shop_veh: "Vehicle Shop",
+                card_v_import: "IMPORTED VEHICLE",
+                v_feat_1: "Custom Realistic Model",
+                v_feat_2: "Improved Handling",
+                btn_buy: "Buy Now"
+            },
+            es: {
+                nav_home: "Inicio",
+                nav_rules: "Reglamento",
+                nav_shop: "Apoyanos",
+                settings_title: "Ajustes",
+                bg_brightness: "Brillo de Fondo",
+                music_volume: "Volumen de Música",
+                lang_select_label: "Idioma / Language",
+                join_discord: "ÚNETE A NAPOLI INSIDE",
+                rules_title: "Reglamento",
+                rules_desc: "Consulta el reglamento oficial de Napoli Inside para conocer los detalles, leyes y normativas que gobiernan nuestra ciudad.",
+                read_rules: "LEER EL REGLAMENTO",
+                shop_title: "Tienda de Apoyo",
+                shop_desc: "Elige una categoría a continuación para explorar los paquetes disponibles y activables dentro del servidor.",
+                tab_factions: "Facciones",
+                tab_business: "Negocios",
+                tab_residences: "Residencias",
+                tab_vehicles: "Vehículos",
+                card_f_bronze: "FACCIÓN BRONCE",
+                f_feat_1: "Nombre de Trabajo de Facción",
+                f_feat_2: "Rangos a Elección",
+                f_feat_3: "Depósito Privado",
+                f_feat_4: "Menú de Jefe",
+                f_feat_5: "5x Pistolas 9mm + 1000 Balas",
+                card_f_silver: "FACCIÓN PLATA",
+                f_feat_6: "Villa Modificada",
+                f_feat_7: "Nombre de Trabajo y Rangos",
+                f_feat_8: "Depósito Privado y Menú de Jefe",
+                f_feat_9: "15x Pistolas 9mm + 3000 Balas",
+                f_feat_10: "Vehículo de Facción",
+                card_f_gold: "FACCIÓN ORO",
+                f_feat_11: "Villa Luxury",
+                f_feat_12: "30x Pistolas 9mm + 7000 Balas",
+                f_feat_13: "2x Vehículos de Facción",
+                f_feat_14: "Helicóptero",
+                cat_activity: "Actividades",
+                card_b_rooms: "LOCALES",
+                b_feat_1: "Policía",
+                b_feat_2: "Aci Mecánico",
+                b_feat_3: "GDF Finanzas",
+                b_feat_4: "Carabinieri",
+                b_feat_5: "Concesionario Auto Roma",
+                b_feat_6: "Armería Beretta",
+                b_feat_7: "Club Pearls",
+                b_feat_8: "RomaAntica",
+                b_feat_9: "Club Il Pagante",
+                b_feat_10: "Pizzería Romana",
+                card_r_custom: "VILLA PERSONALIZADA",
+                r_feat_1: "Interiores Personalizados",
+                r_feat_2: "Sistema Doorlock",
+                cat_res_lux: "Residencias de Lujo",
+                card_r_luxury: "PAQUETE VILLA LUXURY",
+                r_feat_3: "Interiores y Doorlock",
+                r_feat_4: "Garaje Privado con Blip",
+                r_feat_5: "Almacenamiento en Casa",
+                cat_shop_veh: "Tienda de Vehículos",
+                card_v_import: "VEHÍCULO IMPORTADO",
+                v_feat_1: "Modelo Realista Custom",
+                v_feat_2: "Manejo Mejorado",
+                btn_buy: "Comprar"
+            }
+        };
+
+        function changeLanguage(lang) {
+            if (!translations[lang]) lang = 'it';
+            
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    // Mantiene intatta l'icona SVG nel tasto Discord durante la traduzione
+                    if (key === 'join_discord') {
+                        element.innerHTML = '<svg width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037 19.736 19.736 0 0 0-4.885 1.515.069.069 0 0 0-.032.027C.533 9.048-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.078.078 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg> ' + translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+            
+            localStorage.setItem('selectedLanguage', lang);
+            document.querySelector('.setting-select').value = lang;
+        }
+
+        // Carica la lingua salvata o default italiano all'avvio
+        document.addEventListener("DOMContentLoaded", () => {
+            const savedLang = localStorage.getItem('selectedLanguage') || 'it';
+            changeLanguage(savedLang);
+        });
     </script>
 
 </body>
