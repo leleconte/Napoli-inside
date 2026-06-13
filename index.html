@@ -571,6 +571,112 @@
     .reveal { opacity: 0; transform: translateY(28px); transition: .7s ease; }
     .reveal.show { opacity: 1; transform: translateY(0); }
 
+
+
+
+    .empty-image-box {
+      min-height: 230px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.09), rgba(255,255,255,.035));
+      border-style: dashed;
+    }
+    .large-empty-box { min-height: 280px; }
+
+    /* --- PRELOADER INIZIALE CON LOGO.GIF --- */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at center, rgba(0,157,255,.18), transparent 34%),
+        linear-gradient(135deg, #02050d, #071225);
+      transition: opacity .7s ease, visibility .7s ease;
+    }
+    #preloader.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .loader-box {
+      text-align: center;
+      padding: 34px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 28px;
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+      animation: loaderPop .9s ease both;
+    }
+    .loader-logo {
+      width: 150px;
+      height: 150px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 35px rgba(0,157,255,.45));
+      margin-bottom: 18px;
+    }
+    .loader-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+    .loader-bar {
+      width: 230px;
+      height: 8px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255,255,255,.12);
+      margin: 0 auto;
+    }
+    .loader-bar span {
+      display: block;
+      height: 100%;
+      width: 0;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      animation: loadBar 2.2s ease forwards;
+    }
+    @keyframes loadBar { to { width: 100%; } }
+    @keyframes loaderPop {
+      from { opacity: 0; transform: translateY(20px) scale(.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* --- CONTROLLO VOLUME MINIMAL IN BASSO A DESTRA --- */
+    .volume-control {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 150;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(5, 9, 20, .72);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 14px 40px rgba(0,0,0,.28);
+    }
+    .volume-control span {
+      font-size: 1rem;
+      line-height: 1;
+    }
+    .volume-control input {
+      width: 120px;
+      accent-color: var(--blue);
+      cursor: pointer;
+    }
+
+    .music-hint { display: none !important; }
+
     @media (max-width: 900px) {
       nav {
         top: 10px;
@@ -586,7 +692,7 @@
       .nav-links {
         width: 100%;
         display: grid;
-        grid-template-columns: repeat(5, max-content);
+        grid-template-columns: repeat(7, max-content);
         overflow-x: auto;
         gap: 6px;
         padding-bottom: 5px;
@@ -599,6 +705,8 @@
       .rules-hero { grid-template-columns: 1fr; }
       .rules-main-card { padding: 24px; }
       .music-hint { left: 10px; right: 10px; text-align: center; bottom: 10px; }
+      .volume-control { right: 10px; bottom: 10px; padding: 10px 12px; }
+      .volume-control input { width: 95px; }
 
       .hero { gap: 22px; }
       .hero-card { min-height: auto; padding: 22px; }
@@ -638,6 +746,13 @@
   </style>
 </head>
 <body>
+  <div id="preloader">
+    <div class="loader-box">
+      <img src="logo.gif" alt="Napoli Inside" class="loader-logo">
+      <div class="loader-title">NAPOLI INSIDE</div>
+      <div class="loader-bar"><span></span></div>
+    </div>
+  </div>
   <div class="orb one"></div>
   <div class="orb two"></div>
   <audio id="bg-music" src="brumotti.mp3" loop preload="auto"></audio>
@@ -653,6 +768,8 @@
     <button class="nav-btn" data-page="regolamento">Regolamento</button>
     <button class="nav-btn" data-page="lavori">Lavori</button>
     <button class="nav-btn" data-page="fazioni">Fazioni</button>
+    <button class="nav-btn" data-page="gallery">Gallery</button>
+    <button class="nav-btn" data-page="come-entrare">Come entrare</button>
     <button class="nav-btn" data-page="obiettivo">Obiettivo RP</button>
   </div>
 </nav>
@@ -783,6 +900,38 @@
       </div>
     </section>
 
+
+    <section id="gallery" class="page">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2><span>Gallery</span></h2>
+          <p></p>
+        </div>
+        <div class="grid gallery-grid">
+          <div class="card reveal empty-image-box"></div>
+          <div class="card reveal empty-image-box"></div>
+          <div class="card reveal empty-image-box"></div>
+          <div class="card reveal empty-image-box"></div>
+          <div class="card reveal empty-image-box"></div>
+          <div class="card reveal empty-image-box"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="come-entrare" class="page">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2><span>Come entrare</span></h2>
+          <p></p>
+        </div>
+        <div class="grid gallery-grid">
+          <div class="card reveal empty-image-box large-empty-box"></div>
+          <div class="card reveal empty-image-box large-empty-box"></div>
+          <div class="card reveal empty-image-box large-empty-box"></div>
+        </div>
+      </div>
+    </section>
+
     <section id="obiettivo" class="page">
       <div class="container">
         <div class="section-head reveal">
@@ -812,7 +961,11 @@
     </section>
   </main>
 
-  <div class="music-hint">Clicca una volta sul sito per avviare la musica</div>
+  <div class="music-hint"></div>
+  <div class="volume-control">
+    <span>🔊</span>
+    <input id="volume-slider" type="range" min="0" max="100" value="40" aria-label="Volume musica">
+  </div>
 
   <script>
     const pages = document.querySelectorAll('.page');
@@ -834,16 +987,33 @@
       btn.addEventListener('click', () => showPage(btn.dataset.page));
     });
 
-    // Musica di sottofondo: parte al primo click dell'utente, come nel vecchio blocco.
-    document.addEventListener('click', function() {
-      const music = document.getElementById('bg-music');
-      const hint = document.querySelector('.music-hint');
+    const music = document.getElementById('bg-music');
+    const volumeSlider = document.getElementById('volume-slider');
+
+    function startMusic() {
       if (!music) return;
-      music.volume = 0.4;
-      music.play()
-        .then(() => { if (hint) hint.style.display = 'none'; })
-        .catch(err => console.log('Riproduzione bloccata dal browser:', err));
-    }, { once: true });
+      music.volume = Number(volumeSlider.value) / 100;
+      music.play().catch(() => {
+        // I browser possono bloccare l'audio finché non avviene un click/tocco dell'utente.
+      });
+    }
+
+    window.addEventListener('load', () => {
+      const preloader = document.getElementById('preloader');
+      setTimeout(() => {
+        if (preloader) preloader.classList.add('hide');
+        startMusic();
+      }, 2300);
+    });
+
+    document.addEventListener('click', startMusic, { once: true });
+    document.addEventListener('touchstart', startMusic, { once: true });
+
+    if (volumeSlider && music) {
+      volumeSlider.addEventListener('input', () => {
+        music.volume = Number(volumeSlider.value) / 100;
+      });
+    }
 
     function revealElements() {
       document.querySelectorAll('.page.active .reveal').forEach((el, index) => {
