@@ -599,144 +599,68 @@
         </div>
     </section>
 
-    <section id="shop-system" class="page-section">
-        <div class="dashboard-container">
-            <h2 class="section-title" data-translate="shop_title">Shop Sostieni</h2>
-            <div class="brand-line"></div>
+<section id="lavori" class="page-section">
+    <div class="dashboard-container">
+        <h2 class="section-title">OPPORTUNITÀ PROFESSIONALI</h2>
+        <div class="brand-line"></div>
+
+        <!-- MENU FILTRI -->
+        <div class="tabs-menu" style="margin-bottom: 30px;">
+            <a href="#" class="tab-btn active" onclick="filterJobs('tutti', this)">Visualizza tutto</a>
+            <a href="#" class="tab-btn" onclick="filterJobs('emergenza', this)">Forze dell'Ordine</a>
+            <a href="#" class="tab-btn" onclick="filterJobs('attivita', this)">Attività Commerciali</a>
+        </div>
+
+        <!-- GRIGLIA LAVORI -->
+        <div id="job-container" class="shop-grid">
             
-            <div class="placeholder-box">
-                <p data-translate="shop_desc">Scegli una categoria qui sotto per esplorare i pacchetti disponibili ed attivabili all'interno del server.</p>
+            <!-- SERVIZI DI EMERGENZA -->
+            <div class="shop-card" data-category="emergenza">
+                <div class="card-category">Emergenza</div>
+                <div class="card-name">POLIZIA DI STATO</div>
+            </div>
+            <div class="shop-card" data-category="emergenza">
+                <div class="card-category">Emergenza</div>
+                <div class="card-name">CARABINIERI</div>
             </div>
 
-            <div class="tabs-menu">
-                <a href="#fazioni-tab" class="tab-btn" data-translate="tab_factions">Fazioni</a>
-                <a href="#business-tab" class="tab-btn" data-translate="tab_business">Business</a>
-                <a href="#residenze-tab" class="tab-btn" data-translate="tab_residences">Residenze</a>
-                <a href="#veicoli-tab" class="tab-btn" data-translate="tab_vehicles">Veicoli</a>
+            <!-- ATTIVITÀ -->
+            <div class="shop-card" data-category="attivita">
+                <div class="card-category">Esercizio</div>
+                <div class="card-name">BAR MARADONA</div>
+            </div>
+            <div class="shop-card" data-category="attivita">
+                <div class="card-category">Esercizio</div>
+                <div class="card-name">CAFFÈ DEL PIBE</div>
+            </div>
+            <div class="shop-card" data-category="attivita">
+                <div class="card-category">Esercizio</div>
+                <div class="card-name">MARGELLINA BAKERY</div>
+            </div>
+            <div class="shop-card" data-category="attivita">
+                <div class="card-category">Esercizio</div>
+                <div class="card-name">ASS'E MAZZ CUSTOM</div>
+            </div>
+            <div class="shop-card" data-category="attivita">
+                <div class="card-category">Esercizio</div>
+                <div class="card-name">ARMERIA DEL SUD</div>
+            </div>
+            <div class="shop-card" data-category="attivita">
+                <div class="card-category">Esercizio</div>
+                <div class="card-name">081 GARAGE</div>
+            </div>
+            <div class="shop-card" data-category="attivita">
+                <div class="card-category">Esercizio</div>
+                <div class="card-name">RE DELL'USATO</div>
+            </div>
+            <div class="shop-card" data-category="attivita">
+                <div class="card-category">Esercizio</div>
+                <div class="card-name">SA PA LUXURY CAR</div>
             </div>
 
-            <div id="fazioni-tab" class="tab-content">
-                <div class="shop-grid">
-                    <div class="shop-card">
-                        <div>
-                            <div class="card-category">Tier 1</div>
-                            <div class="card-name" data-translate="card_f_bronze">FAZIONE BRONZO</div>
-                            <div class="card-price">30€</div>
-                            <ul class="card-features">
-                                <li data-translate="f_feat_1">Nome Job Fazione</li>
-                                <li data-translate="f_feat_2">Gradi a scelta</li>
-                                <li data-translate="f_feat_3">Deposito Privato</li>
-                                <li data-translate="f_feat_4">Boss Menu</li>
-                                <li data-translate="f_feat_5">5x Pistole 9mm + 1000 Proiettili</li>
-                            </ul>
-                        </div>
-                        <a href="https://discord.gg/napoliinside" class="btn-buy" data-translate="btn_buy">Acquista</a>
-                    </div>
-                    <div class="shop-card" style="border-color: var(--napoli-main);">
-                        <div>
-                            <div class="card-category">Tier 2</div>
-                            <div class="card-name" data-translate="card_f_silver">FAZIONE ARGENTO</div>
-                            <div class="card-price">50€</div>
-                            <ul class="card-features">
-                                <li data-translate="f_feat_6">Villa Modificata</li>
-                                <li data-translate="f_feat_7">Nome Job & Gradi</li>
-                                <li data-translate="f_feat_8">Deposito Privato & Boss Menu</li>
-                                <li data-translate="f_feat_9">15x Pistole 9mm + 3000 Proiettili</li>
-                                <li data-translate="f_feat_10">Veicolo Fazione</li>
-                            </ul>
-                        </div>
-                        <a href="https://discord.gg/napoliinside" class="btn-buy" data-translate="btn_buy">Acquista</a>
-                    </div>
-                    <div class="shop-card">
-                        <div>
-                            <div class="card-category">Tier 3</div>
-                            <div class="card-name" data-translate="card_f_gold">FAZIONE ORO</div>
-                            <div class="card-price">70€</div>
-                            <ul class="card-features">
-                                <li data-translate="f_feat_11">Villa Luxury</li>
-                                <li data-translate="f_feat_7">Nome Job & Gradi</li>
-                                <li data-translate="f_feat_12">30x Pistole 9mm + 7000 Proiettili</li>
-                                <li data-translate="f_feat_13">2x Veicoli Fazione</li>
-                                <li data-translate="f_feat_14">Elicottero</li>
-                            </ul>
-                        </div>
-                        <a href="https://discord.gg/napoliinside" class="btn-buy" data-translate="btn_buy">Acquista</a>
-                    </div>
-                </div>
-            </div>
-
-            <div id="business-tab" class="tab-content">
-                <div class="shop-grid">
-                    <div class="shop-card" style="max-width: 400px;">
-                        <div>
-                            <div class="card-category" data-translate="cat_activity">Attività</div>
-                            <div class="card-name" data-translate="card_b_rooms">LOCALI</div>
-                            <div class="card-price">20€</div>
-                            <ul class="card-features">
-                                <li data-translate="b_feat_1">Polizia</li>
-                                <li data-translate="b_feat_2">Aci</li>
-                                <li data-translate="b_feat_3">GDF</li>
-                                <li data-translate="b_feat_4">Carabinieri</li>
-                                <li data-translate="b_feat_5">Auto Roma</li>
-                                <li data-translate="b_feat_6">Armeria Beretta</li>
-                                <li data-translate="b_feat_7">Pearls</li>
-                                <li data-translate="b_feat_8">RomaAntica</li>
-                                <li data-translate="b_feat_9">Il Pagante</li>
-                                <li data-translate="b_feat_10">Pizzeria Romana</li>
-                            </ul>
-                        </div>
-                        <a href="https://discord.gg/napoliinside" class="btn-buy" data-translate="btn_buy">Acquista</a>
-                    </div>
-                </div>
-            </div>
-
-            <div id="residenze-tab" class="tab-content">
-                <div class="shop-grid">
-                    <div class="shop-card">
-                        <div>
-                            <div class="card-category" data-translate="tab_residences">Residenze</div>
-                            <div class="card-name" data-translate="card_r_custom">VILLA CUSTOM</div>
-                            <div class="card-price">50€</div>
-                            <ul class="card-features">
-                                <li data-translate="r_feat_1">Interni Personalizzati</li>
-                                <li data-translate="r_feat_2">Sistema Doorlock</li>
-                            </ul>
-                        </div>
-                        <a href="https://discord.gg/napoliinside" class="btn-buy" data-translate="btn_buy">Acquista</a>
-                    </div>
-                    <div class="shop-card">
-                        <div>
-                            <div class="card-category" data-translate="cat_res_lux">Residenze Luxury</div>
-                            <div class="card-name" data-translate="card_r_luxury">VILLA LUXURY PACK</div>
-                            <div class="card-price">70€</div>
-                            <ul class="card-features">
-                                <li data-translate="r_feat_3">Interni & Doorlock</li>
-                                <li data-translate="r_feat_4">Garage Privato con Blip</li>
-                                <li data-translate="r_feat_5">Deposito in casa</li>
-                            </ul>
-                        </div>
-                        <a href="https://discord.gg/napoliinside" class="btn-buy" data-translate="btn_buy">Acquista</a>
-                    </div>
-                </div>
-            </div>
-
-            <div id="veicoli-tab" class="tab-content">
-                <div class="shop-grid">
-                    <div class="shop-card" style="max-width: 400px;">
-                        <div>
-                            <div class="card-category" data-translate="cat_shop_veh">Negozio Veicoli</div>
-                            <div class="card-name" data-translate="card_v_import">VEICOLO IMPORTATO</div>
-                            <div class="card-price">50€</div>
-                            <ul class="card-features">
-                                <li data-translate="v_feat_1">Modello Realistico Custom</li>
-                                <li data-translate="v_feat_2">Handling Migliorato</li>
-                            </ul>
-                        </div>
-                        <a href="https://discord.gg/napoliinside" class="btn-buy" data-translate="btn_buy">Acquista</a>
-                    </div>
-                </div>
-            </div>
-
+        </div>
+    </div>
+</section>
             <footer>
                 <p>&copy; 2026 NAPOLI INSIDE RP</p>
             </footer>
